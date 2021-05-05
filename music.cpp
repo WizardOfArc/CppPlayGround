@@ -59,6 +59,10 @@ Note::Note(char pc, float cents, int oct){
     this->m_octave = oct;
 }
 
+Note Note::from_pitch_class_octave(char pc, int oct){
+    return Note(pc, 0.0, oct);
+}
+
 string Note::name_from_pitch_class(char pitch_class)
 {
     string pc_names[12] = {
@@ -82,7 +86,8 @@ char pitch_class_from_name(std::string name)
 double Note::to_frequency()
 {
    int normalized_octave = this->m_octave - 4;
-   double normalized_pitch_class = (double)this->m_pitch_class - 9;
+   double full_pitch_class = (double)this->m_cents/100 + (double)this->m_pitch_class;
+   double normalized_pitch_class = full_pitch_class - 9;
    double fraction_part = normalized_pitch_class / 12;
    return 440 * pow(2, normalized_octave + fraction_part);
 }

@@ -16,16 +16,20 @@ int main(){
     Note another_note = Note((char)3, 0, 4);
     cout << "Another note: " << another_note.to_json() << endl;
 
-    Note yet_another_note = Note::from_freq(440);
-    cout << "Yet another note: " << yet_another_note.to_json() << endl;
+    cout << "\n<====================================================>\n";
+    cout << "Notes from chromatic scale:\n";
+    cout << "<====================================================>\n";
+    for(int octave = -2; octave < 8; octave++){
+        for(char pc = (char)0; pc < 12; pc += (char)1){
+            Note pc_note = Note::from_pitch_class_octave(pc, octave);
+            cout << Note::name_from_pitch_class(pc) << "_" << octave << " is: " << pc_note.to_json() << endl;
+        }
+    }
 
-    Note fourth_note = Note::from_freq(128);
-    cout << "120 hz is: " << fourth_note.to_json() << endl;
-
-    Note fifth_note = Note::from_freq(660);
-    cout << "660 hz is: " << fifth_note.to_json() << endl;
-
-    for(int i = 1; i < 440; i++){
+    cout << "\n<====================================================>\n";
+    cout << "Notes from frequencies:\n";
+    cout << "<====================================================>\n";
+    for(int i = 1; i < 880; i++){
         Note note = Note::from_freq(i);
         cout << i << " Hz is: " << note.to_json() << endl;
     }
