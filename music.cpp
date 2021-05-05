@@ -1,4 +1,5 @@
 #include <cmath>
+#include <map>
 #include <sstream>
 #include "music.h"
 
@@ -77,10 +78,29 @@ string Note::name_from_pitch_class(char pitch_class)
     return pc_names[pitch_class];
 }
 
-char pitch_class_from_name(std::string name)
+char Note::pitch_class_from_name(std::string name)
 {
-    // can I use a switch on a string?
-    return 'A';
+    if(!Note::pc_map_initialized){
+        Note::pc_map["C"] = (char)0;
+        Note::pc_map["C#"] = (char)1;
+        Note::pc_map["Db"] = (char)1;
+        Note::pc_map["D"] = (char)2;
+        Note::pc_map["D#"] = (char)3;
+        Note::pc_map["Eb"] = (char)3;
+        Note::pc_map["E"] = (char)4;
+        Note::pc_map["F"] = (char)5;
+        Note::pc_map["F#"] = (char)6;
+        Note::pc_map["Gb"] = (char)6;
+        Note::pc_map["G"] = (char)7;
+        Note::pc_map["G#"] = (char)8;
+        Note::pc_map["Ab"] = (char)8;
+        Note::pc_map["A"] = (char)9;
+        Note::pc_map["Bb"] = (char)10;
+        Note::pc_map["B"] = (char)11;
+        Note::pc_map_initialized = true;
+    }
+
+    return Note::pc_map[name];
 }
 
 double Note::to_frequency()

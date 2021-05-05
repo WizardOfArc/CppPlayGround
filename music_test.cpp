@@ -13,8 +13,13 @@ int main(){
 
     cout << "To json: " << middle_C.to_json() << endl;
 
-    Note another_note = Note((char)3, 0, 4);
-    cout << "Another note: " << another_note.to_json() << endl;
+    cout << "\n<====================================================>\n";
+    cout << "Validating PC names and mapping:\n";
+    cout << "<====================================================>\n";
+    for (char pc = (char)0; pc < 12; pc += (char)1){
+        string name = Note::name_from_pitch_class(pc);
+        cout << "Does " << (int)pc << " equal " << (int)Note::pitch_class_from_name(name) << "?\n";
+    }
 
     cout << "\n<====================================================>\n";
     cout << "Notes from chromatic scale:\n";
