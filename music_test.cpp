@@ -20,9 +20,14 @@ int main(){
     cout << "Yet another note: " << yet_another_note.to_json() << endl;
 
     Note fourth_note = Note::from_freq(128);
-    cout << "128 hz is: " << fourth_note.to_json() << endl;
+    cout << "120 hz is: " << fourth_note.to_json() << endl;
 
     Note fifth_note = Note::from_freq(660);
     cout << "660 hz is: " << fifth_note.to_json() << endl;
+
+    for(int i = 1; i < 440; i++){
+        Note note = Note::from_freq(i);
+        cout << i << " Hz is: " << note.to_json() << endl;
+    }
     return 0;
 }

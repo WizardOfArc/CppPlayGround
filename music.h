@@ -18,6 +18,7 @@ namespace Music
         static Note from_pitch_class_octave(char pitch_class, int octave);
         static std::string name_from_pitch_class(char pitch_class);
         static char pitch_class_from_name(std::string name);
+        static void normalize(char &pc, float &cents, int &oct);
 
         char get_pitch_class();
         int get_octave();

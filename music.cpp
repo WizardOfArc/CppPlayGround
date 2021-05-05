@@ -6,6 +6,33 @@
 using namespace Music;
 using namespace std;
 
+void Note::normalize(char &pc, float &cents, int &oct){
+    if(cents > -50 && cents < 50){
+        return;
+    }
+    if(cents <= -50){
+        cents = -(100 + cents);
+        if(pc == 0){
+            pc = (char)11;
+            oct = oct - 1;
+            return;
+        }
+        pc = pc - (char)1;
+        return;
+    }
+    if(cents >= 50){
+        // adjust up
+        cents = cents - 100;
+        if(pc == 11){
+            pc = (char)0;
+            oct = oct + 1;
+            return;
+        }
+        pc = pc + (char)1;
+        return;
+    }
+}
+
 Note Note::from_freq(double frequency)
 {
     double power_of_two = log2(frequency/440);
@@ -18,7 +45,10 @@ Note Note::from_freq(double frequency)
     if(pc < 0){
         pc = pc+12;
     }
-    Note note = Note((char)pc, (float)cents, octave);
+    char pitch_class = (char)pc;
+    float float_cents = (float)cents;
+    Note::normalize(pitch_class, float_cents, octave);
+    Note note = Note(pitch_class, float_cents, octave);
     // put in the logic to calculate pitch class, cents and octave from frequency
     return note;
 }
