@@ -54,6 +54,13 @@ Note Note::from_freq(double frequency)
     return note;
 }
 
+Note Note::from_midi(int midi_note){
+    int pc = midi_note % 12;
+    int octave_semitones = (midi_note - pc) - 1;
+    int octave = octave_semitones / 12;
+    return Note::from_pitch_class_octave((char)pc, octave);
+}
+
 Note::Note(char pc, float cents, int oct){
     this->m_pitch_class = pc;
     this->m_cents = cents;
