@@ -18,7 +18,7 @@ int main(){
     cout << "<====================================================>\n";
     for (char pc = (char)0; pc < 12; pc += (char)1){
         string name = Note::name_from_pitch_class(pc);
-        cout << "Does " << (int)pc << " equal " << (int)Note::pitch_class_from_name(name) << "?\n";
+        cout << "Does " << (int)pc << "(" << name << ") equal " << (int)Note::pitch_class_from_name(name) << "?\n";
     }
 
     cout << "\n<====================================================>\n";
