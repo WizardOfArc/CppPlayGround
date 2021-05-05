@@ -83,21 +83,37 @@ char Note::pitch_class_from_name(std::string name)
 {
     if(!pc_map_initialized){
         pc_map["C"] = (char)0;
+        pc_map["c"] = (char)0;
         pc_map["C#"] = (char)1;
+        pc_map["cis"] = (char)1;
         pc_map["Db"] = (char)1;
+        pc_map["des"] = (char)1;
         pc_map["D"] = (char)2;
+        pc_map["d"] = (char)2;
         pc_map["D#"] = (char)3;
+        pc_map["dis"] = (char)3;
         pc_map["Eb"] = (char)3;
+        pc_map["ees"] = (char)3;
         pc_map["E"] = (char)4;
+        pc_map["e"] = (char)4;
         pc_map["F"] = (char)5;
+        pc_map["f"] = (char)5;
         pc_map["F#"] = (char)6;
+        pc_map["fis"] = (char)6;
         pc_map["Gb"] = (char)6;
+        pc_map["ges"] = (char)6;
         pc_map["G"] = (char)7;
+        pc_map["g"] = (char)7;
         pc_map["G#"] = (char)8;
+        pc_map["gis"] = (char)8;
         pc_map["Ab"] = (char)8;
+        pc_map["aes"] = (char)8;
         pc_map["A"] = (char)9;
+        pc_map["a"] = (char)9;
         pc_map["Bb"] = (char)10;
+        pc_map["bes"] = (char)10;
         pc_map["B"] = (char)11;
+        pc_map["b"] = (char)11;
         pc_map_initialized = true;
     }
 
