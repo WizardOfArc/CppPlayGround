@@ -6,14 +6,27 @@
 using namespace Music;
 using namespace std;
 
-Note Note::from_freq(float frequency)
+Note Note::from_freq(double frequency)
 {
-    Note note = Note();
+    double power_of_two = log2(frequency/440);
+    int whole_number_part = (int)power_of_two;
+    double fraction_part = power_of_two - whole_number_part;
+    int octave = whole_number_part + 4;
+    double semitones = (fraction_part * 12) + 9;
+    int pc = (int)semitones;
+    double cents = (semitones - pc)*100;
+    if(pc < 0){
+        pc = pc+12;
+    }
+    Note note = Note((char)pc, (float)cents, octave);
     // put in the logic to calculate pitch class, cents and octave from frequency
-    char pitch_class = 0; // frequency to pitch class
-    float cents = 0.0; // frequency to cents
-    int octave = 4; // frequency to octave
     return note;
+}
+
+Note::Note(char pc, float cents, int oct){
+    this->m_pitch_class = pc;
+    this->m_cents = cents;
+    this->m_octave = oct;
 }
 
 string Note::name_from_pitch_class(char pitch_class)
@@ -39,7 +52,10 @@ char pitch_class_from_name(std::string name)
 
 double Note::to_frequency()
 {
-   return 440 * pow(2, this->m_octave - 4) * pow(2, ((double)this->m_pitch_class - 9)/12);
+   int normalized_octave = this->m_octave - 4;
+   double normalized_pitch_class = (double)this->m_pitch_class - 9;
+   double fraction_part = normalized_pitch_class / 12;
+   return 440 * pow(2, normalized_octave + fraction_part);
 }
 
 int Note::to_midi()

@@ -12,7 +12,8 @@ namespace Music
             this->m_octave = 4;
             this->m_cents = 0.0;
         }
-        static Note from_freq(float frequency);
+        Note(char pc, float cents, int oct);
+        static Note from_freq(double frequency);
         static Note from_midi(int midi_note);
         static Note from_pitch_class_octave(char pitch_class, int octave);
         static std::string name_from_pitch_class(char pitch_class);
