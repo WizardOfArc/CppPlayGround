@@ -66,16 +66,10 @@ Note Note::from_pitch_class_octave(char pc, int oct){
 
 string Note::name_from_pitch_class(char pitch_class)
 {
-    string pc_names[12] = {
-        "C", "C#", "D", "Eb",
-        "E", "F", "F#", "G",
-        "G#", "A", "Bb", "B"
-    };
     if (pitch_class > 11){
         pitch_class = pitch_class % 12;
     }
-
-    return pc_names[pitch_class];
+    return PC_NAMES[pitch_class];
 }
 
 char Note::pitch_class_from_name(std::string name)

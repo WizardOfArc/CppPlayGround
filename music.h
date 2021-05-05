@@ -8,6 +8,11 @@ namespace Music
 
     static bool pc_map_initialized;
     static std::map<std::string, char> pc_map;
+    static const std::string PC_NAMES[12] = {
+        "C", "C#", "D", "Eb",
+        "E", "F", "F#", "G",
+        "G#", "A", "Bb", "B"
+    };
 
     class Note
     {
