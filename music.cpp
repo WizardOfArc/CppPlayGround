@@ -36,9 +36,8 @@ string Note::name_from_pitch_class(char pitch_class)
         "E", "F", "F#", "G",
         "G#", "A", "Bb", "B"
     };
-
-    if(pitch_class < 0 || pitch_class > 11){
-        return NULL;
+    if (pitch_class > 11){
+        pitch_class = pitch_class % 12;
     }
 
     return pc_names[pitch_class];
