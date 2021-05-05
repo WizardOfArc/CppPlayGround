@@ -37,10 +37,19 @@ void Note::normalize(char &pc, float &cents, int &oct){
 Note Note::from_freq(double frequency)
 {
     double power_of_two = log2(frequency/440);
-    int whole_number_part = (int)power_of_two;
+    int whole_number_part;
+    if(power_of_two > 0){
+        whole_number_part = (int)(power_of_two + 0.5);
+    } else {
+        whole_number_part = (int)(power_of_two - 0.5);
+    }
     double fraction_part = power_of_two - whole_number_part;
     int octave = whole_number_part + 4;
     double semitones = (fraction_part * 12) + 9;
+    if (semitones >= 12){
+        semitones -= 12;
+        octave += 1;
+    }
     int pc = (int)semitones;
     double cents = (semitones - pc)*100;
     if(pc < 0){
@@ -48,7 +57,7 @@ Note Note::from_freq(double frequency)
     }
     char pitch_class = (char)pc;
     float float_cents = (float)cents;
-    Note::normalize(pitch_class, float_cents, octave);
+    // Note::normalize(pitch_class, float_cents, octave);
     Note note = Note(pitch_class, float_cents, octave);
     // put in the logic to calculate pitch class, cents and octave from frequency
     return note;
