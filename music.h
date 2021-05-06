@@ -6,13 +6,7 @@
 namespace Music
 {
 
-    static bool pc_map_initialized;
-    static std::map<std::string, char> pc_map;
-    static const std::string PC_NAMES[12] = {
-        "C", "C#", "D", "Eb",
-        "E", "F", "F#", "G",
-        "G#", "A", "Bb", "B"
-    };
+    // static bool pc_map_initialized;
 
     class Note
     {
@@ -29,6 +23,8 @@ namespace Music
         static std::string name_from_pitch_class(char pitch_class);
         static char pitch_class_from_name(std::string name);
         static void normalize(char &pc, float &cents, int &oct);
+        static std::map<std::string, char> pc_map;
+        static std::string PC_NAMES[];
 
         char get_pitch_class();
         int get_octave();

@@ -7,6 +7,47 @@
 using namespace Music;
 using namespace std;
 
+std::string Note::PC_NAMES[12] = {
+    "C", "C#", "D", "Eb",
+    "E", "F", "F#", "G",
+    "G#", "A", "Bb", "B",
+    };
+
+std::map<std::string, char> Note::pc_map = {
+    {std::string("C"), (char)0},
+    {std::string("c"), (char)0},
+    {std::string("C#"), (char)1},
+    {std::string("cis"), (char)1},
+    {std::string("Db"), (char)1},
+    {std::string("des"), (char)1},
+    {std::string("D"), (char)2},
+    {std::string("d"), (char)2},
+    {std::string("D#"), (char)3},
+    {std::string("dis"), (char)3},
+    {std::string("Eb"), (char)3},
+    {std::string("ees"), (char)3},
+    {std::string("E"), (char)4},
+    {std::string("e"), (char)4},
+    {std::string("F"), (char)5},
+    {std::string("f"), (char)5},
+    {std::string("F#"), (char)6},
+    {std::string("fis"), (char)6},
+    {std::string("Gb"), (char)6},
+    {std::string("ges"), (char)6},
+    {std::string("G"), (char)7},
+    {std::string("g"), (char)7},
+    {std::string("G#"), (char)8},
+    {std::string("gis"), (char)8},
+    {std::string("Ab"), (char)8},
+    {std::string("aes"), (char)8},
+    {std::string("A"), (char)9},
+    {std::string("a"), (char)9},
+    {std::string("Bb"), (char)10},
+    {std::string("bes"), (char)10},
+    {std::string("B"), (char)11},
+    {std::string("b"), (char)11},
+};
+
 void Note::normalize(char &pc, float &cents, int &oct){
     if(cents > -50 && cents < 50){
         return;
@@ -57,7 +98,7 @@ Note Note::from_freq(double frequency)
     }
     char pitch_class = (char)pc;
     float float_cents = (float)cents;
-    // Note::normalize(pitch_class, float_cents, octave);
+    Note::normalize(pitch_class, float_cents, octave);
     Note note = Note(pitch_class, float_cents, octave);
     // put in the logic to calculate pitch class, cents and octave from frequency
     return note;
@@ -90,42 +131,6 @@ string Note::name_from_pitch_class(char pitch_class)
 
 char Note::pitch_class_from_name(std::string name)
 {
-    if(!pc_map_initialized){
-        pc_map["C"] = (char)0;
-        pc_map["c"] = (char)0;
-        pc_map["C#"] = (char)1;
-        pc_map["cis"] = (char)1;
-        pc_map["Db"] = (char)1;
-        pc_map["des"] = (char)1;
-        pc_map["D"] = (char)2;
-        pc_map["d"] = (char)2;
-        pc_map["D#"] = (char)3;
-        pc_map["dis"] = (char)3;
-        pc_map["Eb"] = (char)3;
-        pc_map["ees"] = (char)3;
-        pc_map["E"] = (char)4;
-        pc_map["e"] = (char)4;
-        pc_map["F"] = (char)5;
-        pc_map["f"] = (char)5;
-        pc_map["F#"] = (char)6;
-        pc_map["fis"] = (char)6;
-        pc_map["Gb"] = (char)6;
-        pc_map["ges"] = (char)6;
-        pc_map["G"] = (char)7;
-        pc_map["g"] = (char)7;
-        pc_map["G#"] = (char)8;
-        pc_map["gis"] = (char)8;
-        pc_map["Ab"] = (char)8;
-        pc_map["aes"] = (char)8;
-        pc_map["A"] = (char)9;
-        pc_map["a"] = (char)9;
-        pc_map["Bb"] = (char)10;
-        pc_map["bes"] = (char)10;
-        pc_map["B"] = (char)11;
-        pc_map["b"] = (char)11;
-        pc_map_initialized = true;
-    }
-
     return pc_map[name];
 }
 
