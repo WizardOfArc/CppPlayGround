@@ -34,17 +34,17 @@ int main () {
       query_type = kvpair[0];
       query_value = kvpair[1];
       if(query_type == "midi"){
-          int midi = std::atoi(query_value.c_str());
+          int midi = std::stoi(query_value);
           note = Note::from_midi(midi);
           valid = true;
       } else if(query_type == "frequency"){
-          double frequency = std::atof(query_value.c_str());
+          double frequency = std::stod(query_value);
           note = Note::from_freq(frequency);
           valid = true;
       } else if(query_type == "note"){
           // expecting NAME_OCTAVE
           vector<string> note_parts = split(query_value, '_');
-          int octave = std::atoi(note_parts[1].c_str());
+          int octave = std::stoi(note_parts[1]);
           string name = note_parts[0];
           char pc = Note::pitch_class_from_name(name);
           note = Note::from_pitch_class_octave(pc, octave);
