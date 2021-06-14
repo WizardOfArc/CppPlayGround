@@ -29,6 +29,7 @@ int main()
         all_container.AppendChild(make_wee_entry(i));
     }
     doc.AppendNodeToBody(all_container);
+    std::cout << "Content-type:text/html\r\n\r\n";
     std::cout << doc.ToString() << std::endl;
     // is this ^ enough for rendering html as a reponse to a GET?
 
