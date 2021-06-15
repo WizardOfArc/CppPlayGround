@@ -31,14 +31,14 @@ CTML::Node css()
     CTML::Node css_link("link");
     css_link.SetAttribute("rel", "stylesheet");
     css_link.SetAttribute("type", "type/css");
-    css_link.SetAttribute("href", "http://vajravai.com/Tips/CSS/index.css");
+    css_link.SetAttribute("href", "http://vajravai.com/html/Tips/CSS/index.css");
     return css_link;
 }
 
 CTML::Node js()
 {
     CTML::Node js_script("script");
-    js_script.SetAttribute("src", "http://vajravai.com/Tips/JS/index.js");
+    js_script.SetAttribute("src", "http://vajravai.com/html/Tips/JS/index.js");
     return js_script;
 }
 
