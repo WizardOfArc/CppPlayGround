@@ -86,6 +86,15 @@ int main()
     doc.AppendNodeToBody(js());
 
     std::cout << "Content-type:text/html\r\n\r\n";
-    std::cout << doc.ToString() << std::endl;
+    // StringFormatting::SINGLE_LINE
+    // bool trailingNewLine=false,
+    // uint32_t indentLevel=0,
+    // bool escapeContent=true)
+    CTML::ToStringOptions options(
+        CTML::StringFormatting::SINGLE_LINE,
+        true,
+        0,
+        false);
+    std::cout << doc.ToString(options) << std::endl;
     return 0;
 }
