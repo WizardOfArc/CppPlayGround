@@ -31,21 +31,21 @@ CTML::Node css()
     CTML::Node css_link("link");
     css_link.SetAttribute("rel", "stylesheet");
     css_link.SetAttribute("type", "type/css");
-    css_link.SetAttribute("href", "CSS/index.css");
+    css_link.SetAttribute("href", "http://vajravai.com/Tips/CSS/index.css");
     return css_link;
 }
 
 CTML::Node js()
 {
     CTML::Node js_script("script");
-    js_script.SetAttribute("src", "JS/index.js");
+    js_script.SetAttribute("src", "http://vajravai.com/Tips/JS/index.js");
     return js_script;
 }
 
 CTML::Node homelink()
 {
     CTML::Node home_link_anchor("a");
-    home_link_anchor.SetAttribute("href", "../index.html");
+    home_link_anchor.SetAttribute("href", "http://vajravai.com/index.html");
     CTML::Node home_link_div("div");
     home_link_div.SetAttribute("class", "home-link");
     home_link_anchor.AppendChild(home_link_div);
