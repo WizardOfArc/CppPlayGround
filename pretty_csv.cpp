@@ -50,7 +50,7 @@ vector<int> get_max_col_widths(ifstream &ifs){
         int curr_col_idx = 0;
         stringstream ss(line);
         string item;
-        while( getline(ss, item, ',') ){
+        while( getline(ss, item, '\t') ){
             int col_width = item.length() + 2; // 2 for padding
             if (line_num == 0) {
                 // we set up the vector with the first row
@@ -98,7 +98,7 @@ void print_csv(ifstream &ifs, const vector<int> &col_ws){
         stringstream ss(line);
         string item;
         cout << "|";
-        while(getline(ss, item, ',')){
+        while(getline(ss, item, '\t')){
            // per col part
            cout << make_entry_with_padding(item, col_ws[curr_col_idx]) << "|";
            curr_col_idx++;
@@ -126,7 +126,7 @@ int main(int argc, char** argv){
     string csv = string(argv[1]);
     size_t extension_pos;
     extension_pos = csv.length() - 4; // where .csv should be
-    size_t found = csv.find(".csv", extension_pos);
+    size_t found = csv.find(".tsv", extension_pos);
     if(found == string::npos){
         cout << "Please provide a csv file path.\n";
         return 1;

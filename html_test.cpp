@@ -30,12 +30,13 @@ int main()
     }
     doc.AppendNodeToBody(all_container);
     std::cout << "Content-type:text/html\r\n\r\n";
+    // This ^ is necessary for rendering html as a reponse to a GET?
     std::cout << doc.ToString() << std::endl;
-    // is this ^ enough for rendering html as a reponse to a GET?
 
     // for writing out to a file
     // std::ofstream out_file;
     // out_file.open("html_test.html");
     // out_file << doc.ToString();
     // out_file.close();
+    return 0;
 }
