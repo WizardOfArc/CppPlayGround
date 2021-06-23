@@ -49,6 +49,7 @@ int main()
         true,
         0,
         false);
+    std::cout << "Content-type:text/html\r\n\r\n";
     std::cout << container.ToString(options) << std::endl;
     return 0;
 }
