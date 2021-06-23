@@ -34,16 +34,18 @@ std::vector<CTML::Node> band_item(std::vector<std::string> entry)
     CTML::Node band_content("div");
     band_content.SetAttribute("class", "section-content");
 
-    CTML::Node band_logo("div");
-    band_logo.SetAttribute("style", "background:url(" + entry[1] + ")");
+    CTML::Node band_logo("img");
+    band_logo.SetAttribute("src", entry[1]);
+    band_logo.UseClosingTag(false);
     band_content.AppendChild(band_logo);
 
     CTML::Node band_blurb("div");
     band_blurb.AppendText(entry[3]);
     band_content.AppendChild(band_blurb);
 
-    CTML::Node band_pic("div");
-    band_pic.SetAttribute("style", "background:url(" + entry[2] + ")");
+    CTML::Node band_pic("img");
+    band_pic.SetAttribute("src", entry[2]);
+    band_pic.UseClosingTag(false);
     band_content.AppendChild(band_pic);
 
     band_content.AppendChild(CTML::Node("h3", "Links"));
