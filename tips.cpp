@@ -26,39 +26,6 @@ std::vector<CTML::Node> tip_item(std::vector<std::string> entry, int index)
     return item_pair;
 }
 
-CTML::Node css()
-{
-    CTML::Node css_link("link");
-    css_link.SetAttribute("rel", "stylesheet");
-    css_link.SetAttribute("type", "type/css");
-    css_link.SetAttribute("href", "../Tips/CSS/index.css");
-    return css_link;
-}
-
-CTML::Node js()
-{
-    CTML::Node js_script("script");
-    js_script.SetAttribute("src", "../Tips/JS/index.js");
-    return js_script;
-}
-
-CTML::Node homelink()
-{
-    CTML::Node home_link_anchor("a");
-    home_link_anchor.SetAttribute("href", "../index.html");
-    CTML::Node home_link_div("div");
-    home_link_div.SetAttribute("class", "home-link");
-    home_link_anchor.AppendChild(home_link_div);
-    return home_link_anchor;
-}
-
-CTML::Node display_title(const std::string title)
-{
-    CTML::Node tips_title("div", title);
-    tips_title.SetAttribute("class", "title-text");
-    return tips_title;
-}
-
 CTML::Node section_container(std::vector<std::vector<std::string> > data)
 {
     CTML::Node sections("div");
@@ -76,25 +43,12 @@ int main()
 {
     std::string tips_tsv_file("TSVs/tips.tsv");
     std::vector<std::vector<std::string> > data = AZITSV::parse_tsv_file(tips_tsv_file);
-    CTML::Document doc;
-    doc.AppendNodeToHead(CTML::Node("title", "Tips"));
-    doc.AppendNodeToHead(css());
-
-    doc.AppendNodeToBody(display_title("Musical Tips"));
-    doc.AppendNodeToBody(section_container(data));
-    doc.AppendNodeToBody(homelink());
-    doc.AppendNodeToBody(js());
-
-    std::cout << "Content-type:text/html\r\n\r\n";
-    // StringFormatting::SINGLE_LINE
-    // bool trailingNewLine=false,
-    // uint32_t indentLevel=0,
-    // bool escapeContent=true)
+    CTML::Node container = section_container(data);
     CTML::ToStringOptions options(
         CTML::StringFormatting::SINGLE_LINE,
         true,
         0,
         false);
-    std::cout << doc.ToString(options) << std::endl;
+    std::cout << container.ToString(options) << std::endl;
     return 0;
 }
