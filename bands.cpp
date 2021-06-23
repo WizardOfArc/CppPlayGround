@@ -36,6 +36,8 @@ std::vector<CTML::Node> band_item(std::vector<std::string> entry)
 
     CTML::Node band_logo("img");
     band_logo.SetAttribute("src", entry[1]);
+    band_logo.SetAttribute("width", "100");
+    band_logo.SetAttribute("height", "100");
     band_logo.UseClosingTag(false);
     band_content.AppendChild(band_logo);
 
@@ -45,6 +47,8 @@ std::vector<CTML::Node> band_item(std::vector<std::string> entry)
 
     CTML::Node band_pic("img");
     band_pic.SetAttribute("src", entry[2]);
+    band_pic.SetAttribute("width", "100");
+    band_pic.SetAttribute("height", "100");
     band_pic.UseClosingTag(false);
     band_content.AppendChild(band_pic);
 
